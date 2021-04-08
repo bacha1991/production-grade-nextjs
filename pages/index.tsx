@@ -1,9 +1,11 @@
 import React, { FC } from 'react'
-import { Pane, majorScale } from 'evergreen-ui'
+import { Pane, majorScale, PropertiesIcon } from 'evergreen-ui'
 import Container from '../components/container'
 import Hero from '../components/hero'
 import HomeNav from '../components/homeNav'
 import FeatureSection from '../components/featureSection'
+
+import { home } from '../content';
 
 const Home: FC<{ content: { hero: any; features: any[] } }> = ({ content }) => {
   return (
@@ -46,3 +48,11 @@ Home.defaultProps = {
 }
 
 export default Home
+
+export function getStaticProps(ctx) {
+  return {
+    props: {
+      content: ctx.preview ? home.draft : home.published
+    }
+  };
+}
